@@ -24,18 +24,10 @@
   min-height: 48px;
 }
 
-.footer-brand .brand-wordmark {
-  font-size: clamp(38px, 3.8vw, 54px);
-  letter-spacing: -.06em;
-}
-
-.footer-brand .flower {
-  width: 36px;
-  height: 36px;
-}
-
-.footer-brand .flower-center {
-  fill: var(--ink);
+.footer-brand .brand-logo {
+  width: 248px;
+  max-width: 100%;
+  height: 124px;
 }
 
 .footer-intro > p {

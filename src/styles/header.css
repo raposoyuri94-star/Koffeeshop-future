@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-  padding: 18px 5%;
+  padding: 9px 5%;
   background: var(--soft-gray);
   position: sticky;
   top: 0;
@@ -13,13 +13,13 @@
 
 .logo {
   display: inline-flex;
-  gap: 12px;
   align-items: center;
+  flex-shrink: 0;
 }
 
-.logo > .flower {
-  width: 38px;
-  height: 38px;
+.logo .brand-logo {
+  filter: invert(1);
+  mix-blend-mode: multiply;
 }
 
 .main-navigation {
@@ -53,10 +53,6 @@
   .main-navigation {
     gap: 23px;
   }
-  .logo > .flower {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 @media (max-width: 900px) {
@@ -64,7 +60,11 @@
     --header-height: 80px;
   }
   .site-header {
-    padding: 17px 6%;
+    padding: 10px 6%;
+  }
+  .logo .brand-logo {
+    width: 120px;
+    height: 60px;
   }
   .mobile-toggle {
     display: flex;
@@ -137,26 +137,16 @@
     --header-height: 76px;
   }
   .site-header {
-    padding: 14px 6%;
+    padding: 10px 6%;
     gap: 15px;
   }
-  .logo {
-    gap: 8px;
-  }
-  .logo > .flower {
-    width: 27px;
-    height: 27px;
+  .logo .brand-logo {
+    width: 112px;
+    height: 56px;
   }
   .mobile-toggle {
     padding: 8px 10px;
     font-size: 12px;
     gap: 9px;
-  }
-}
-
-@media (max-width: 360px) {
-  .logo > .flower {
-    width: 24px;
-    height: 24px;
   }
 }

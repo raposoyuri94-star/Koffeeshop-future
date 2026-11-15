@@ -1,12 +1,5 @@
 import React from 'react';
 
-export function Flower({ className = '' }) {
-  return <svg className={`flower ${className}`} viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
-    {Array.from({ length: 8 }, (_, index) => <ellipse key={index} cx="32" cy="14" rx="8" ry="13" transform={`rotate(${index * 45} 32 32)`} />)}
-    <circle cx="32" cy="32" r="13" /><circle className="flower-center" cx="32" cy="32" r="5" />
-  </svg>;
-}
-
 export function CoffeeDoodle() {
   return <svg className="coffee-doodle" viewBox="0 0 230 250" fill="none" aria-hidden="true">
     <g stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
@@ -21,9 +14,13 @@ export function CoffeeDoodle() {
 
 export default function Brand() {
   return (
-    <>
-      <Flower />
-      <span className="brand-wordmark">kofeeshop</span>
-    </>
+    <img
+      className="brand-logo"
+      src={`${import.meta.env.BASE_URL}images/koffee-logo.png`}
+      alt="Koffee — Iced Coffee & Frappuccino"
+      width="1774"
+      height="887"
+      decoding="async"
+    />
   );
 }

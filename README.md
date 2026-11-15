@@ -51,12 +51,15 @@ Update the alt descriptions when replacing photos. Menu page metadata lives in `
 - Colors: black `#000000`, white `#ffffff`, soft gray `#f2f2f2`, gray `#d6d6d6`, light gray `#e6e6e6`. Photos retain their original colors.
 - Type: Fraunces at weight 900 for the brand and headlines; DM Sans for navigation, descriptions, and prices. Fonts are hosted locally.
 - Layout: a full-bleed café hero with left-aligned copy, a split photo/story section, a browsable menu with a seasonal poster, events, and a generous wordmark footer. Sections stack on mobile. The former “Something good” favorites section and its navigation links have been removed.
-- Character: an original SVG coffee cup, flower mark, and a user-triggered coffee-bean shower. Reduced-motion settings disable animation.
+- Branding: the supplied Koffee logo is used in the header and footer, with the Instagram story ring removed. The coffee-bean favicon follows the logo. The header displays a dark version against its light background; the footer retains the original white artwork on black.
+- Character: an original SVG coffee cup and a user-triggered coffee-bean shower. Reduced-motion settings disable animation.
 - Copy: conversational Portuguese built around shared iced coffees and the catch-up that runs a little longer, led by "Era só um café". Buttons and links use text without arrow icons. Decorative punctuation, trademark stamps, and repeated flower ornaments have been removed.
 
 The reference informed the prominent serif typography, food focus, and playful interaction. Kofeeshop uses its own copy, illustration, palette, and images.
 
 ## Assets
+
+The website logo is stored at `public/images/koffee-logo.png`. It was cleaned from the supplied Instagram screenshot using the built-in image editing tool, preserving the wordmark, coffee beans, and tagline while removing the colored story ring.
 
 The supplied shop images are stored locally in `public/images/`. Original menu artwork and the pumpkin spice poster retain their proportions and can be opened at full size.
 

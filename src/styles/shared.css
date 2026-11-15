@@ -25,16 +25,11 @@
   transform: translateY(0);
 }
 
-.flower-center {
-  fill: var(--soft-gray);
-}
-
-.brand-wordmark {
-  font-family: var(--display);
-  font-size: 39px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 1;
+.brand-logo {
+  display: block;
+  width: 152px;
+  height: 76px;
+  object-fit: contain;
 }
 
 .button {
@@ -111,19 +106,12 @@
 }
 
 @media (max-width: 1100px) {
-  .brand-wordmark {
-    font-size: 34px;
-  }
   .section-space {
     padding: 80px 6%;
   }
 }
 
 @media (max-width: 650px) {
-  .brand-wordmark {
-    font-size: 29px;
-    letter-spacing: -1.7px;
-  }
   .section-space {
     padding: 65px 6%;
   }
@@ -137,11 +125,5 @@
     font-size: 26px;
     bottom: 25px;
     left: 6%;
-  }
-}
-
-@media (max-width: 360px) {
-  .brand-wordmark {
-    font-size: 26px;
   }
 }
