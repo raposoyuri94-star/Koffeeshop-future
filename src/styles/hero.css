@@ -215,12 +215,12 @@
     background: linear-gradient(90deg,#000000b3,#00000040),linear-gradient(0deg,#00000066,transparent 50%);
   }
   .hero-content {
-    padding: 48px 6% 235px;
+    padding: clamp(110px, 19svh, 170px) 6% 235px;
     width: 100%;
   }
   .hero-intro {
     font-size: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .hero h1 {
     font-size: clamp(62px,13.9vw,89px);
@@ -229,6 +229,7 @@
   .hero-description {
     font-size: 14px;
     margin: 22px 0;
+    max-width: 34ch;
   }
   .hero-content > .button {
     min-height: 50px;
