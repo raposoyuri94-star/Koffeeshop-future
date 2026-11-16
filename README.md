@@ -1,4 +1,6 @@
-# Kofeeshop
+# Future
+
+Future is the project and repository name for the Kofeeshop website.
 
 A complete React café redesign inspired by [Sunbeam Bagels](https://sunbeambagels.com/): oversized soft serif typography, large food photography, a black, gray, and white palette, and a playful coffee character.
 
@@ -11,7 +13,7 @@ npm run build
 npm test
 ```
 
-Open the development URL at `/koffeeshop/`. Browser tests use installed Google Chrome and launch the production preview automatically, so build before testing. The suite checks eight screen sizes, image loading, three menu pages and their full-size links, section navigation, mobile navigation, keyboard focus in the events dialog, and reduced motion. The website uses Portuguese for Mozambique (`pt-MZ`).
+Open the development URL at `/future/`. Browser tests use installed Google Chrome and launch the production preview automatically, so build before testing. The suite checks eight screen sizes, image loading, three menu pages and their full-size links, section navigation, mobile navigation, keyboard focus in the events dialog, and reduced motion. The website uses Portuguese for Mozambique (`pt-MZ`).
 
 ## Source structure
 
@@ -75,6 +77,6 @@ The original placeholder photographs from Unsplash are retained in `public/image
 
 ## GitHub Pages
 
-The existing `/koffeeshop/` Vite base path and GitHub Pages workflow are retained. In repository Settings → Pages, select GitHub Actions. Push to `main` or manually run **Deploy Kofeeshop to GitHub Pages** to deploy `dist/`.
+The Vite base path is `/future/` to match the GitHub repository name. In repository Settings → Pages, select GitHub Actions. Push to `main` or manually run **Deploy Future to GitHub Pages** to deploy `dist/`.
 
-No deployment was performed as part of the redesign. Screenshots and browser reports are ignored by Git.
+Build output, screenshots, and browser reports are ignored by Git.

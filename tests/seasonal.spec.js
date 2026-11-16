@@ -9,7 +9,7 @@ for (const width of [320, 768, 1366]) {
     await page.goto('./');
     await expect(page.locator('#seasonal')).toHaveCount(0);
     await page.locator('#menu').getByRole('link', { name: 'Ver as bebidas da estação' }).click();
-    await expect(page).toHaveURL(/\/koffeeshop\/bebidas-sazonais\.html$/);
+    await expect(page).toHaveURL(/\/future\/bebidas-sazonais\.html$/);
     await expect(page).toHaveTitle('Bebidas da estação | Kofeeshop');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Especiarias');
     await expect(page.locator('#menu, #story, #location')).toHaveCount(0);
@@ -22,7 +22,7 @@ for (const width of [320, 768, 1366]) {
     expect(brokenAnchors).toEqual([]);
 
     await page.getByRole('link', { name: 'Voltar ao menu', exact: true }).click();
-    await expect(page).toHaveURL(/\/koffeeshop\/#menu$/);
+    await expect(page).toHaveURL(/\/future\/#menu$/);
     await expect(page.locator('#menu')).toBeVisible();
     await expect(page.locator('#seasonal')).toHaveCount(0);
     expect(errors).toEqual([]);
@@ -35,7 +35,7 @@ for (const width of [320, 1366]) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
 
     async function expectLocationAligned() {
-      await expect(page).toHaveURL(/\/koffeeshop\/#location$/);
+      await expect(page).toHaveURL(/\/future\/#location$/);
       await expect.poll(() => page.locator('#location').evaluate(section => {
         const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
         return Math.abs(section.getBoundingClientRect().top - offset);

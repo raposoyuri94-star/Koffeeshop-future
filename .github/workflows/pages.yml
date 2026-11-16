@@ -1,4 +1,4 @@
-name: Deploy Kofeeshop to GitHub Pages
+name: Deploy Future to GitHub Pages
 
 on:
   push:
