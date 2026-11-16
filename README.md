@@ -46,7 +46,7 @@ Image paths and Portuguese descriptions are centralized in `src/data/images.js`.
 | `koffee 6.jpg` | Food menu page |
 | `Koffe.jpeg` | Pumpkin spice poster beside the menu, with a full-size link |
 
-Update the alt descriptions when replacing photos. Menu page metadata lives in `src/data/menu.js`. Each category displays its original menu image and a short caption; clicking the image opens it at full size. Products and prices are shown in the supplied artwork. Event options live in `src/data/catering.js` and remain illustrative. Page copy lives with its section in `src/sections/`, and the dialog and footer copy live in their respective files in `src/components/`. Ordering and payment services are not connected. Add the real location and opening hours to `src/components/SiteFooter.jsx` when available.
+Update the alt descriptions when replacing photos. Menu page metadata lives in `src/data/menu.js`. Each category displays its original menu image and a short caption; clicking the image opens an image viewer with zoom, a visible Close button, Escape dismissal, and backdrop dismissal. Products and prices are shown in the supplied artwork. Event options live in `src/data/catering.js` and remain illustrative. Page copy lives with its section in `src/sections/`, and the dialog and footer copy live in their respective files in `src/components/`. Ordering and payment services are not connected. Add the real location and opening hours to `src/components/SiteFooter.jsx` when available.
 
 ## Design direction
 
@@ -65,7 +65,7 @@ The hero uses the supplied six-second clip at `public/videos/koffee-hero.mp4`, w
 
 The website logo is stored at `public/images/koffee-logo.png`. It was cleaned from the supplied Instagram screenshot using the built-in image editing tool, preserving the wordmark, coffee beans, and tagline while removing the colored story ring.
 
-The supplied shop images are stored locally in `public/images/`. Original menu artwork and the pumpkin spice poster retain their proportions and can be opened at full size.
+The supplied shop images are stored locally in `public/images/`. Original menu artwork and the pumpkin spice poster retain their proportions and open in the same closable image viewer, without leaving the website.
 
 Font licenses are included in `public/fonts/`.
 
