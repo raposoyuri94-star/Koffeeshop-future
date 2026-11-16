@@ -215,7 +215,7 @@
     background: linear-gradient(90deg,#000000b3,#00000040),linear-gradient(0deg,#00000066,transparent 50%);
   }
   .hero-content {
-    padding: clamp(170px, 28svh, 250px) 6% 235px;
+    padding: clamp(230px, 37svh, 330px) 6% 235px;
     width: 100%;
   }
   .hero-intro {
