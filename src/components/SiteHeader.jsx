@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Brand from './Brand';
+import Brand from './brand/Brand';
 
 export default function SiteHeader({ onOpenCatering, homeHref = '' }) {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CoffeeDoodle } from '../components/Brand';
+import { CoffeeDoodle } from '../components/brand/Brand';
 import { images } from '../data/images';
 
 const stripMessages = [

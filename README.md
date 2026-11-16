@@ -21,12 +21,12 @@ Open the development URL at `/Koffeeshop-future/`. Browser tests use installed G
 src/
   App.jsx              Page composition and shared dialog state
   main.jsx             React entry point
-  style.css            Stylesheet imports in cascade order
-  components/          Header, footer, branding, dialog, and coffee animation
+  components/          Header, footer, dialog, and coffee animation
+    brand/             Logo, illustration, and Instagram icon
   sections/            Hero, story, menu, and events
   data/                Images, menu pages, and event options
   hooks/               Coffee animation state and timer
-  styles/              Base, shared, and section styles with their media queries
+  styles/              index.css imports base, shared, and section styles
 ```
 
 Navigation state belongs to `components/SiteHeader.jsx`, and menu selection belongs to `sections/MenuSection.jsx`. The seasonal feature stays with the menu section. `App.jsx` connects the page sections, the shared events dialog, and the coffee animation.
@@ -67,15 +67,7 @@ The website logo is stored at `public/images/koffee-logo.png`. It was cleaned fr
 
 The supplied shop images are stored locally in `public/images/`. Original menu artwork and the pumpkin spice poster retain their proportions and can be opened at full size.
 
-The original placeholder photographs from Unsplash are retained in `public/images/kofeeshop/` for reference:
-
-- [Café hero](https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb)
-- [Coffee](https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd)
-- [Croissants](https://images.unsplash.com/photo-1555507036-ab1f4038808a)
-- [Sandwiches](https://images.unsplash.com/photo-1528735602780-2552fd46c7af)
-- [Café interior](https://images.unsplash.com/photo-1554118811-1e0d58224f24)
-
-[Unsplash license](https://unsplash.com/license). Fraunces and DM Sans are distributed under the SIL Open Font License; their licenses are included in `public/fonts/`.
+Font licenses are included in `public/fonts/`.
 
 ## GitHub Pages
 

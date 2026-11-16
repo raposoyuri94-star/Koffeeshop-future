@@ -1,6 +1,6 @@
 import React from 'react';
-import Brand from './Brand';
-import InstagramIcon from './InstagramIcon';
+import Brand from './brand/Brand';
+import InstagramIcon from './brand/InstagramIcon';
 import { location } from '../data/location';
 import { instagram } from '../data/social';
 
