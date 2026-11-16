@@ -29,11 +29,23 @@ export default function App() {
     setCateringOpen(false);
   }
 
+  function openPhoto(event) {
+    const image = event.target;
+    if (image.tagName !== 'IMG' || image.closest('button, a')) return;
+    setPreviewImage({
+      src: image.currentSrc || image.src,
+      alt: image.alt,
+      title: image.alt,
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+    });
+  }
+
   return (
     <div className="site-shell">
       <a className="skip-link" href="#main">Saltar para o conteúdo</a>
       <SiteHeader onOpenCatering={openCatering} homeHref={homeHref} />
-      <main id="main">
+      <main id="main" onClick={openPhoto}>
         {isSeasonalPage ? (
           <SeasonalSection onOpenImage={setPreviewImage} />
         ) : (

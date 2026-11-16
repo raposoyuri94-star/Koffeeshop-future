@@ -15,7 +15,7 @@ export default function CateringSection({ onOpenCatering }) {
           <button className="button button-light" onClick={onOpenCatering}>Opções para eventos</button>
         </div>
         <div className="catering-photo">
-          <img src={images.catering.src} alt={images.catering.alt} width="1284" height="1511" loading="lazy" />
+          <img role="button" tabIndex={0} aria-haspopup="dialog" onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.currentTarget.click(); } }} src={images.catering.src} alt={images.catering.alt} width="1284" height="1511" loading="lazy" />
           <span className="photo-caption">Ponho isto ao meio</span>
         </div>
       </section>

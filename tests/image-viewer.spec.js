@@ -67,3 +67,18 @@ for (const width of [320, 1366]) {
     }
   });
 }
+
+test('story and events photos open in a closable viewer without opening a tab', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./');
+  const initialURL = page.url();
+  for (const selector of ['.story-main-image', '.story-inset img', '.catering-photo img']) {
+    await page.locator(selector).click();
+    const viewer = page.locator('.image-viewer');
+    await expect(viewer).toBeVisible();
+    await viewer.getByRole('button', { name: 'Fechar imagem', exact: true }).click();
+    await expect(viewer).toHaveCount(0);
+    expect(page.url()).toBe(initialURL);
+    expect(page.context().pages()).toHaveLength(1);
+  }
+});

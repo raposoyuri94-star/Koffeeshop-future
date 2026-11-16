@@ -127,3 +127,6 @@
     left: 6%;
   }
 }
+
+main img[role="button"] { cursor: zoom-in; }
+main img[role="button"]:focus-visible { outline: 3px solid currentColor; outline-offset: -4px; }

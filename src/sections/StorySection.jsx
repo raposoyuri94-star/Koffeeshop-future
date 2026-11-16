@@ -5,9 +5,9 @@ export default function StorySection() {
   return (
     <section className="story" id="story" aria-labelledby="story-heading">
       <div className="story-photo">
-        <img className="story-main-image" src={images.story.src} alt={images.story.alt} loading="lazy" />
+        <img role="button" tabIndex={0} aria-haspopup="dialog" onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.currentTarget.click(); } }} className="story-main-image" src={images.story.src} alt={images.story.alt} loading="lazy" />
         <div className="story-inset">
-          <img src={images.storyMoment.src} alt={images.storyMoment.alt} loading="lazy" />
+          <img role="button" tabIndex={0} aria-haspopup="dialog" onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.currentTarget.click(); } }} src={images.storyMoment.src} alt={images.storyMoment.alt} loading="lazy" />
         </div>
         <span className="photo-caption">Entre um gole e outro</span>
       </div>
