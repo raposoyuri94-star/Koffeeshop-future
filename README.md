@@ -61,7 +61,7 @@ The reference informed the prominent serif typography, food focus, and playful i
 
 ## Assets
 
-The hero uses the supplied six-second clip at `public/videos/koffee-hero.mp4`, with its audio removed and MP4 metadata positioned for streaming. It autoplays silently, loops, and plays inline on mobile. Visitors can pause or resume it with the hero control. Reduced-motion preferences show the original hero photo without downloading the video; playback errors also leave the photo visible.
+The hero uses the supplied six-second clip at `public/videos/koffee-hero.mp4`, with its audio removed and MP4 metadata positioned for streaming. It autoplays silently, loops, and plays inline on mobile. Reduced-motion preferences show the original hero photo without downloading the video; playback errors also leave the photo visible.
 
 The website logo is stored at `public/images/koffee-logo.png`. It was cleaned from the supplied Instagram screenshot using the built-in image editing tool, preserving the wordmark, coffee beans, and tagline while removing the colored story ring.
 
