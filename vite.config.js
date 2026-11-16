@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'node:url';
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'Koffeeshop-future';
+
 export default defineConfig({
-  base: '/future/',
+  base: `/${repositoryName}/`,
   build: {
     rollupOptions: {
       input: {

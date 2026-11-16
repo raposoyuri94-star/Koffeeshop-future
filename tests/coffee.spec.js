@@ -80,6 +80,40 @@ test('mobile navigation closes with Escape and returns keyboard focus', async ({
   await expect(toggle).toBeFocused();
 });
 
+test('closing mobile Events returns keyboard focus to the menu toggle', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./');
+  const toggle = page.locator('.mobile-toggle');
+  const dialog = page.getByRole('dialog');
+
+  for (const closeAction of ['escape', 'button']) {
+    await toggle.click();
+    await page.locator('#main-navigation').getByRole('button', { name: 'Eventos' }).click();
+    await expect(dialog).toBeVisible();
+    if (closeAction === 'escape') {
+      await page.keyboard.press('Escape');
+    } else {
+      await dialog.getByRole('button', { name: 'Combinado' }).click();
+    }
+    await expect(dialog).not.toBeVisible();
+    await expect(toggle).toBeFocused();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  }
+});
+
+test('mobile navigation stays closed after switching to desktop and back', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./');
+  const toggle = page.locator('.mobile-toggle');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await page.setViewportSize({ width: 1366, height: 900 });
+  await expect(toggle).toBeHidden();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#main-navigation')).toBeHidden();
+});
+
 test('catering dialog traps focus, restores scrolling, and can reopen', async ({ page }) => {
   await page.goto('./');
   const trigger = page.getByRole('button', { name: 'Opções para eventos' });

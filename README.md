@@ -1,6 +1,6 @@
 # Future
 
-Future is the project and repository name for the Kofeeshop website.
+Future is the Kofeeshop website, hosted in the [Koffeeshop-future repository](https://github.com/raposoyuri94-star/Koffeeshop-future).
 
 A complete React café redesign inspired by [Sunbeam Bagels](https://sunbeambagels.com/): oversized soft serif typography, large food photography, a black, gray, and white palette, and a playful coffee character.
 
@@ -13,7 +13,7 @@ npm run build
 npm test
 ```
 
-Open the development URL at `/future/`. Browser tests use installed Google Chrome and launch the production preview automatically, so build before testing. The suite checks eight screen sizes, image loading, three menu pages and their full-size links, section navigation, mobile navigation, keyboard focus in the events dialog, and reduced motion. The website uses Portuguese for Mozambique (`pt-MZ`).
+Open the development URL at `/Koffeeshop-future/`. Browser tests use installed Google Chrome and launch a dedicated production preview on port 5175, so build before testing. The suite checks eight screen sizes, deployed asset paths, image loading, three menu pages and their full-size links, section navigation, mobile navigation across screen sizes, keyboard focus in the events dialog, and reduced motion. The website uses Portuguese for Mozambique (`pt-MZ`).
 
 ## Source structure
 
@@ -79,6 +79,6 @@ The original placeholder photographs from Unsplash are retained in `public/image
 
 ## GitHub Pages
 
-The Vite base path is `/future/` to match the GitHub repository name. In repository Settings → Pages, select GitHub Actions. Push to `main` or manually run **Deploy Future to GitHub Pages** to deploy `dist/`.
+The local Vite base path is `/Koffeeshop-future/`. GitHub Actions derives it from `GITHUB_REPOSITORY` so deployment asset paths follow the actual repository name. In repository Settings → Pages, select GitHub Actions. Push to `main` or manually run **Deploy Future to GitHub Pages** to deploy `dist/`.
 
 Build output, screenshots, and browser reports are ignored by Git.

@@ -8,6 +8,12 @@ export default function SiteHeader({ onOpenCatering, homeHref = '' }) {
   useEffect(() => {
     if (!menuOpen) return;
 
+    const desktopViewport = window.matchMedia('(min-width: 901px)');
+
+    function closeOnDesktop(event) {
+      if (event.matches) setMenuOpen(false);
+    }
+
     function closeOnEscape(event) {
       if (event.key === 'Escape') {
         setMenuOpen(false);
@@ -16,7 +22,11 @@ export default function SiteHeader({ onOpenCatering, homeHref = '' }) {
     }
 
     document.addEventListener('keydown', closeOnEscape);
-    return () => document.removeEventListener('keydown', closeOnEscape);
+    desktopViewport.addEventListener('change', closeOnDesktop);
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      desktopViewport.removeEventListener('change', closeOnDesktop);
+    };
   }, [menuOpen]);
 
   function closeMenu() {
@@ -24,6 +34,7 @@ export default function SiteHeader({ onOpenCatering, homeHref = '' }) {
   }
 
   function openCatering() {
+    if (menuOpen) navigationToggle.current?.focus();
     closeMenu();
     onOpenCatering();
   }
