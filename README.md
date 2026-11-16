@@ -37,7 +37,7 @@ Image paths and Portuguese descriptions are centralized in `src/data/images.js`.
 
 | File | Placement |
 | --- | --- |
-| `kofee 3.jpeg` | Full-width hero with friends and iced coffees |
+| `kofee 3.jpeg` | Hero poster and still-image fallback with friends and iced coffees |
 | `Koffee 2.jpeg` | Main story photo with coffee and a laptop |
 | `kofee 4.jpeg` | Inset story photo with iced matcha |
 | `Koffee 5.jpg` | Sandwich photo in the events section |
@@ -60,6 +60,8 @@ Update the alt descriptions when replacing photos. Menu page metadata lives in `
 The reference informed the prominent serif typography, food focus, and playful interaction. Kofeeshop uses its own copy, illustration, palette, and images.
 
 ## Assets
+
+The hero uses the supplied six-second clip at `public/videos/koffee-hero.mp4`, with its audio removed and MP4 metadata positioned for streaming. It autoplays silently, loops, and plays inline on mobile. Visitors can pause or resume it with the hero control. Reduced-motion preferences show the original hero photo without downloading the video; playback errors also leave the photo visible.
 
 The website logo is stored at `public/images/koffee-logo.png`. It was cleaned from the supplied Instagram screenshot using the built-in image editing tool, preserving the wordmark, coffee beans, and tagline while removing the colored story ring.
 
