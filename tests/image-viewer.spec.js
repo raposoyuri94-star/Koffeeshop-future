@@ -16,8 +16,9 @@ for (const width of [320, 1366]) {
         width: image.clientWidth, height: image.clientHeight,
         ratio: image.naturalWidth / image.naturalHeight,
       }));
-      expect(size.width).toBeLessThanOrEqual(200);
-      expect(size.width / size.height).toBeCloseTo(size.ratio, 2);
+      expect(size.width).toBe(140);
+      expect(size.height).toBe(175);
+      await expect(thumbnail).toHaveCSS('object-fit', 'contain');
       await trigger.click();
       const viewer = page.getByRole('dialog', { name, exact: true });
       await expect(viewer).toBeVisible();

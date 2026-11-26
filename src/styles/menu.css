@@ -136,7 +136,8 @@
 
 .menu-photo-button {
   grid-column: 1 / -1;
-  width: min(100%, var(--menu-photo-width, 200px));
+  width: min(100%, 140px);
+  aspect-ratio: 4 / 5;
   padding: 0;
   background: transparent;
   text-align: left;
@@ -145,7 +146,7 @@
 
 .menu-item-photo {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
 }
 

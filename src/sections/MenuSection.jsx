@@ -160,7 +160,6 @@ export default function MenuSection({ onOpenImage }) {
                 <li className="menu-item" key={item.name}>
                   {item.image && (
                     <button className="menu-photo-button" type="button"
-                      style={item.image.thumbnailWidth ? { '--menu-photo-width': `${item.image.thumbnailWidth}px` } : undefined}
                       aria-label={`Ampliar foto de ${item.name}`} aria-haspopup="dialog"
                       onClick={() => onOpenImage({
                         ...item.image,
