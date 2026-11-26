@@ -134,6 +134,10 @@
   overflow-wrap: anywhere;
 }
 
+.menu-item-copy-wide {
+  grid-column: 1 / -1;
+}
+
 .menu-photo-button {
   grid-column: 1 / -1;
   width: min(100%, 140px);

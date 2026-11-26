@@ -67,7 +67,9 @@ test('menu categories show readable items and prices with sandwich photos', asyn
   await page.getByRole('button', { name: 'Café gelado', exact: true }).click();
   await page.getByRole('region', { name: 'Iced cappuccino', exact: true }).locator('summary').click();
   const caramel = page.getByRole('region', { name: 'Iced cappuccino', exact: true }).getByRole('listitem').filter({ has: page.getByRole('heading', { name: 'Iced Caramel', exact: true }) });
-  await expect(caramel.locator('.menu-price-option')).toHaveText(['M 330 MT', 'L 380 MT']);
+  await expect(caramel.locator('.menu-price-option')).toHaveCount(0);
+  await expect(caramel.getByRole('button', { name: 'Adicionar Iced Caramel M, 330 MT', exact: true })).toHaveText('M · 330 MT');
+  await expect(caramel.getByRole('button', { name: 'Adicionar Iced Caramel L, 380 MT', exact: true })).toHaveText('L · 380 MT');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 

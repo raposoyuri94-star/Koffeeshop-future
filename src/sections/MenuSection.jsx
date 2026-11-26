@@ -173,17 +173,17 @@ export default function MenuSection({ onOpenImage }) {
                         width={item.image.width} height={item.image.height} loading="lazy" />
                     </button>
                   )}
-                  <div className="menu-item-copy">
+                  <div className={`menu-item-copy${activeSection === 'Café gelado' ? ' menu-item-copy-wide' : ''}`}>
                     <h4>{item.name}</h4>
                     {item.description && <p>{item.description}</p>}
                   </div>
-                  <span className="menu-item-price">
+                  {activeSection !== 'Café gelado' && <span className="menu-item-price">
                     {item.prices.map((price, option) => (
                       <span className="menu-price-option" key={option}>
                         {item.prices.length > 1 && `${['M', 'L'][option]} `}{price} <span className="menu-currency">MT</span>
                       </span>
                     ))}
-                  </span>
+                  </span>}
                   <div className="menu-item-actions">
                     {item.prices.map((price, option) => (
                       <button type="button" key={option}
