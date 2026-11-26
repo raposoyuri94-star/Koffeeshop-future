@@ -18,6 +18,7 @@ export default function SiteFooter({ onOpenCatering, homeHref = '' }) {
           <h2 className="footer-heading">Por aqui</h2>
           <div className="footer-links">
             <a href={`${homeHref}#menu`}>O nosso menu</a>
+            <a href={`${import.meta.env.BASE_URL}galeria.html`}>Galeria</a>
             <a href={`${import.meta.env.BASE_URL}bebidas-sazonais.html`}>Bebidas da estação</a>
             <a href={`${homeHref}#story`}>A nossa história</a>
             <a href={`${homeHref}#location`}>Onde estamos</a>

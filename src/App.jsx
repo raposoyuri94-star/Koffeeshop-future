@@ -16,7 +16,8 @@ import useInitialHashScroll from './hooks/useInitialHashScroll';
 
 export default function App() {
   const isSeasonalPage = window.location.pathname.endsWith('/bebidas-sazonais.html');
-  const homeHref = isSeasonalPage ? import.meta.env.BASE_URL : '';
+  const isGalleryPage = window.location.pathname.endsWith('/galeria.html');
+  const homeHref = isSeasonalPage || isGalleryPage ? import.meta.env.BASE_URL : '';
   const [cateringOpen, setCateringOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
   const { batch, isRaining, makeItRain } = useCoffeeRain();
@@ -47,14 +48,15 @@ export default function App() {
       <a className="skip-link" href="#main">Saltar para o conteúdo</a>
       <SiteHeader onOpenCatering={openCatering} homeHref={homeHref} />
       <main id="main" onClick={openPhoto}>
-        {isSeasonalPage ? (
+        {isGalleryPage ? (
+          <GallerySection onOpenImage={setPreviewImage} />
+        ) : isSeasonalPage ? (
           <SeasonalSection onOpenImage={setPreviewImage} />
         ) : (
           <>
             <HeroSection onMakeItRain={makeItRain} />
             <StorySection />
             <MenuSection onOpenImage={setPreviewImage} />
-            <GallerySection onOpenImage={setPreviewImage} />
             <CateringSection onOpenCatering={openCatering} />
             <LocationSection />
           </>

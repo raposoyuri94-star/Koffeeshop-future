@@ -63,7 +63,7 @@ export default function SiteHeader({ onOpenCatering, homeHref = '' }) {
         aria-label="Navegação principal"
       >
         <a href={`${homeHref}#story`} onClick={closeMenu}>A nossa história</a>
-        <a href={`${homeHref}#gallery`} onClick={closeMenu}>Galeria</a>
+        <a href={`${import.meta.env.BASE_URL}galeria.html`} onClick={closeMenu}>Galeria</a>
         <a className="mobile-navigation-link" href={`${import.meta.env.BASE_URL}bebidas-sazonais.html`} onClick={closeMenu}>
           Bebidas da estação
         </a>

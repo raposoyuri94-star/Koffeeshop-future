@@ -6,13 +6,14 @@ const photos = [
   { file: 'crispy-chicken.png', title: 'Crispy chicken' },
   { file: 'tuna-avo.png', title: 'Tuna avo' },
   { file: 'Koffee 2.jpeg', title: 'Uma pausa para o café' },
-  { file: 'Koffee 5.jpg', title: 'À mesa com a Koffé' },
+  { file: 'food-platter-clean.png', title: 'À mesa com a Koffé' },
 ];
 
 export default function GallerySection({ onOpenImage }) {
   return (
     <section id="gallery" className="gallery section-space" aria-labelledby="gallery-heading">
-      <h2 id="gallery-heading">Galeria</h2>
+      <a className="text-link gallery-back" href={`${import.meta.env.BASE_URL}#home`}>Voltar à página inicial</a>
+      <h1 id="gallery-heading">Galeria</h1>
       <p>Um pouco do que vai no copo e à mesa.</p>
       <div className="gallery-grid">
         {photos.map(photo => {

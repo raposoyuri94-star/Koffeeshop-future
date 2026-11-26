@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         seasonal: fileURLToPath(new URL('./bebidas-sazonais.html', import.meta.url)),
+        gallery: fileURLToPath(new URL('./galeria.html', import.meta.url)),
       },
     },
   },

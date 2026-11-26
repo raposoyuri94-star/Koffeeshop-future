@@ -1,5 +1,6 @@
 .gallery { background: var(--soft-gray); }
-.gallery h2 { font-size: clamp(40px, 5.2vw, 76px); }
+.gallery h1 { font-size: clamp(40px, 5.2vw, 76px); }
+.gallery-back { display: inline-block; margin: 0 0 28px; }
 .gallery > p { margin-top: 18px; font-size: 16px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
 .gallery-grid figure { margin: 0; min-width: 0; }

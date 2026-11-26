@@ -14,7 +14,7 @@ export const images = {
     alt: 'Uma pausa com um matcha gelado da Koffé numa mesa ao ar livre',
   },
   catering: {
-    src: imagePath('Koffee 5.jpg'),
+    src: imagePath('food-platter-clean.png'),
     alt: 'Sanduíches da Koffé com recheios variados, acompanhadas por uma bebida gelada e sumo',
   },
   menuCoffee: {
