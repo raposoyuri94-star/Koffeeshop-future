@@ -1,5 +1,20 @@
 import { test, expect } from '@playwright/test';
 
+test('menu selection survives reload and a visit to seasonal drinks', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Adicionar Single espresso, 100 MT', exact: true }).click();
+  await page.reload();
+  await expect(page.locator('.menu-selection summary')).toContainText('100 MT');
+  await page.locator('#menu').getByRole('link', { name: 'Ver as bebidas da estação' }).click();
+  await page.getByRole('link', { name: 'Voltar ao menu' }).click();
+  await expect(page.locator('.menu-selection summary')).toContainText('A minha seleção (1)');
+  await page.locator('.menu-selection summary').click();
+  await page.getByRole('button', { name: 'Limpar seleção', exact: true }).click();
+  await page.reload();
+  await expect(page.locator('.menu-selection')).toHaveCount(0);
+});
+
 for (const width of [320, 1366]) {
   test(`menu selection keeps price options and categories separate at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -8,15 +23,27 @@ for (const width of [320, 1366]) {
     await page.getByRole('button', { name: 'Adicionar Single espresso, 100 MT', exact: true }).click();
     await page.getByRole('button', { name: 'Café quente', exact: true }).click();
     const hotCoffee = page.getByRole('region', { name: 'Hot coffee', exact: true });
+    await hotCoffee.locator('summary').click();
     await hotCoffee.getByRole('button', { name: 'Adicionar Caramel Macchiato M, 350 MT', exact: true }).click();
     await page.getByRole('button', { name: 'Café gelado', exact: true }).click();
     const icedCoffee = page.getByRole('region', { name: 'Iced coffee', exact: true });
+    await icedCoffee.locator('summary').click();
     await icedCoffee.getByRole('button', { name: 'Adicionar Caramel Macchiato L, 400 MT', exact: true }).click();
     await page.getByRole('button', { name: 'Para comer', exact: true }).click();
+    await page.getByRole('region', { name: 'Tostas', exact: true }).locator('summary').click();
     await page.getByRole('region', { name: 'Tostas', exact: true }).getByRole('button', { name: 'Adicionar Tuna Melt, 350 MT', exact: true }).click();
     const summary = page.locator('.menu-selection summary');
     await expect(summary).toContainText('A minha seleção (4)');
     await expect(summary).toContainText(/1.?200 MT/);
+    const whatsapp = page.getByRole('link', { name: 'Continuar no WhatsApp', exact: true });
+    await expect(whatsapp).toBeVisible();
+    const orderUrl = new URL(await whatsapp.getAttribute('href'));
+    expect(orderUrl.origin).toBe('https://wa.me');
+    const message = orderUrl.searchParams.get('text');
+    expect(message).toContain('1 × Single espresso');
+    expect(message).toContain('1 × Caramel Macchiato (M) — Hot coffee');
+    expect(message).toContain('1 × Caramel Macchiato (L) — Iced coffee');
+    expect(message).toMatch(/Total: 1.?200 MT/);
     await summary.click();
     const selection = page.locator('.menu-selection');
     await expect(selection.getByRole('listitem')).toHaveCount(4);
@@ -27,10 +54,17 @@ for (const width of [320, 1366]) {
     await expect(summary).toContainText(/1.?300 MT/);
     await selection.getByRole('button', { name: 'Diminuir Tuna Melt', exact: true }).click();
     await expect(selection.getByRole('listitem')).toHaveCount(3);
+    await expect(summary).toBeFocused();
     await expect(summary).toContainText('950 MT');
+    const updatedMessage = new URL(await whatsapp.getAttribute('href')).searchParams.get('text');
+    expect(updatedMessage).toContain('2 × Single espresso');
+    expect(updatedMessage).not.toContain('Tuna Melt');
+    expect(updatedMessage).toContain('Total: 950 MT');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await selection.getByRole('button', { name: 'Limpar seleção', exact: true }).click();
     await expect(selection).toHaveCount(0);
+    await expect(whatsapp).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Para comer', exact: true })).toBeFocused();
     await expect(page.locator('#menu').getByRole('status')).toHaveText('Seleção limpa.');
   });
 }

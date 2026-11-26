@@ -139,7 +139,7 @@ export const menu = {
     group('Sandes', [
       item('Chicken mayo', 400, 'Pão de forma, alface, tomate, chicken mayo'),
       item('Egg & Veggie', 300, 'Pão de forma, alface, ovo cremoso, cenoura, repolho roxo e tomate'),
-      item('Tuna avo', 450, 'Pão de forma, rúcula, tomate, abacate, atum e molho da casa', { src: 'tuna-avo.png', width: 1139, height: 1381 }),
+      item('Tuna avo', 450, 'Pão de forma, rúcula, tomate, abacate, atum e molho da casa', { src: 'tuna-avo.png', width: 1139, height: 1381, thumbnailWidth: 140 }),
       item('Crispy chicken', 450, 'Pão de forma, tiras de frango panado, alface, tomate, cebola caramelizada e repolho roxo', { src: 'crispy-chicken.png', width: 1110, height: 1417 }),
       item('Pastrami & Smoked beef', 550, 'Pão de forma, rúcula, tomate, duplo beef pastrami & duplo smoked beef e cebola caramelizada, molho especial e pickles'),
     ]),

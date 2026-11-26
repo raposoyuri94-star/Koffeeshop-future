@@ -6,6 +6,7 @@ for (const width of [320, 1366]) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('./');
     await page.getByRole('button', { name: 'Para comer', exact: true }).click();
+    await page.getByRole('region', { name: 'Sandes', exact: true }).locator('summary').click();
     for (const name of ['Tuna avo', 'Crispy chicken']) {
       const trigger = page.getByRole('button', { name: `Ampliar foto de ${name}`, exact: true });
       await trigger.scrollIntoViewIfNeeded();

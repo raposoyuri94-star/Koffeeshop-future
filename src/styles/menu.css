@@ -68,7 +68,7 @@
   margin: 36px 0 0;
 }
 
-.menu-group > .menu-items {
+.menu-accordion > .menu-items {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: clamp(32px, 5vw, 80px);
@@ -77,16 +77,35 @@
 
 .menu-group {
   break-inside: avoid;
-  padding-bottom: 36px;
+  padding-bottom: 12px;
 }
 
 .menu-group-heading {
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 14px;
+  border-bottom: 1px solid var(--light-gray);
+  padding: 14px 0;
+  cursor: pointer;
 }
 
 .menu-group-heading h3 {
-  font-size: clamp(26px, 2.6vw, 36px);
+  display: inline;
+  font-size: clamp(20px, 2vw, 26px);
+}
+
+.menu-group-count {
+  margin-left: 12px;
+  font-size: 14px;
+  color: #494949;
+  white-space: nowrap;
+}
+
+.menu-group-heading:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.menu-accordion[open] > .menu-group-heading {
+  border-bottom-color: var(--ink);
+  margin-bottom: 4px;
 }
 
 .menu-group-heading p {
@@ -117,7 +136,7 @@
 
 .menu-photo-button {
   grid-column: 1 / -1;
-  width: min(100%, 200px);
+  width: min(100%, var(--menu-photo-width, 200px));
   padding: 0;
   background: transparent;
   text-align: left;
@@ -273,6 +292,26 @@
   margin-top: 20px;
 }
 
+.menu-whatsapp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+
+.menu-whatsapp .button {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.menu-whatsapp p {
+  flex: 1 1 240px;
+  font-size: 14px;
+  max-width: 52ch;
+}
+
 @media (min-width: 1700px) {
   .menu-heading h2 {
     font-size: 82px;
@@ -301,7 +340,7 @@
 }
 
 @media (max-width: 650px) {
-  .menu-group > .menu-items {
+  .menu-accordion > .menu-items {
     grid-template-columns: minmax(0, 1fr);
   }
 .menu-sheet {

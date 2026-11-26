@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { menu } from '../data/menu';
+import { whatsapp } from '../data/social';
 
 const menuSections = Object.entries(menu).flatMap(([category, groups]) => groups.map(group => ({
   ...group, category, id: `${category}:${group.name}`,
@@ -12,16 +13,58 @@ const categories = [
   { name: 'Para comer', groups: ['Petiscos', 'Asinhas & tiras de frango', 'Tostas', 'Croissant brioche', 'Sandes', 'Pequeno-almoço'] },
   { name: 'Extras', groups: ['Extras'] },
 ];
+const selectionKey = `koffee-menu-selection-v1:${import.meta.env.BASE_URL}`;
+const availableItems = new Map(menuSections.flatMap(group => group.items.flatMap(item => item.prices.map((price, option) => {
+  const id = JSON.stringify([group.category, group.name, item.name, option]);
+  return [id, { id, name: item.name, size: item.prices.length > 1 ? ['M', 'L'][option] : '', group: group.name, price }];
+}))));
+
+function restoreSelection() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(selectionKey) || '[]');
+    if (!Array.isArray(saved)) return [];
+    const restored = new Map();
+    for (const line of saved) {
+      const item = availableItems.get(line?.id);
+      if (item && Number.isSafeInteger(line.quantity) && line.quantity > 0) {
+        restored.set(item.id, { ...item, quantity: line.quantity });
+      }
+    }
+    return [...restored.values()];
+  } catch {
+    return [];
+  }
+}
 
 export default function MenuSection({ onOpenImage }) {
   const [activeSection, setActiveSection] = useState(categories[0].name);
-  const [selection, setSelection] = useState([]);
+  const [selection, setSelection] = useState(restoreSelection);
   const [announcement, setAnnouncement] = useState('');
+  const activeCategoryButton = useRef(null);
+  const selectionSummary = useRef(null);
   const activeCategory = categories.find(category => category.name === activeSection);
   const visibleGroups = menuSections.filter(group => activeCategory.groups.includes(group.name));
   const count = selection.reduce((sum, item) => sum + item.quantity, 0);
   const total = selection.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const money = value => `${value.toLocaleString('pt-MZ')} MT`;
+  const orderMessage = [
+    'Olá, Koffee! Gostaria de fazer este pedido:',
+    '',
+    ...selection.map(line => `${line.quantity} × ${line.name}${line.size ? ` (${line.size})` : ''} — ${line.group}\n${money(line.price)} cada · Subtotal: ${money(line.price * line.quantity)}`),
+    '',
+    `Total: ${money(total)}`,
+    '',
+    'Podem confirmar a disponibilidade e como levantar o pedido?',
+  ].join('\n');
+  const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(orderMessage)}`;
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(selectionKey, JSON.stringify(selection.map(({ id, quantity }) => ({ id, quantity }))));
+    } catch {
+      // Selection remains usable when browser storage is unavailable.
+    }
+  }, [selection]);
 
   function addItem(group, item, price, option) {
     const id = JSON.stringify([group.category, group.name, item.name, option]);
@@ -36,8 +79,17 @@ export default function MenuSection({ onOpenImage }) {
   }
 
   function changeQuantity(id, delta) {
+    if (delta < 0 && selection.find(line => line.id === id)?.quantity === 1) {
+      (selection.length === 1 ? activeCategoryButton.current : selectionSummary.current)?.focus({ preventScroll: true });
+    }
     setSelection(current => current.map(line => line.id === id
       ? { ...line, quantity: line.quantity + delta } : line).filter(line => line.quantity > 0));
+  }
+
+  function clearSelection() {
+    activeCategoryButton.current?.focus({ preventScroll: true });
+    setSelection([]);
+    setAnnouncement('Seleção limpa.');
   }
 
   return (
@@ -45,7 +97,7 @@ export default function MenuSection({ onOpenImage }) {
       <div className="menu-heading">
         <div>
           <p className="handwritten">A conversa pode esperar um minuto</p>
-          <h2 id="menu-heading">Vamos ao pedido</h2>
+          <h2 id="menu-heading">O nosso menu</h2>
         </div>
         <p>Escolha o que vai no copo<br /> e o que acompanha.</p>
       </div>
@@ -53,6 +105,7 @@ export default function MenuSection({ onOpenImage }) {
         <div className="menu-tabs" role="group" aria-label="Categoria do menu">
           {categories.map(category => (
             <button type="button" key={category.name}
+              ref={activeSection === category.name ? activeCategoryButton : null}
               className={activeSection === category.name ? 'active' : ''}
               aria-pressed={activeSection === category.name}
               onClick={() => setActiveSection(category.name)}>{category.name}</button>
@@ -61,10 +114,11 @@ export default function MenuSection({ onOpenImage }) {
       </div>
       <p className="menu-announcement" role="status" aria-label="Seleção do menu">{announcement}</p>
       {count > 0 && (
+        <>
         <details className="menu-selection">
-          <summary>A minha seleção ({count}) <strong>{money(total)}</strong></summary>
+          <summary ref={selectionSummary}>A minha seleção ({count}) <strong>{money(total)}</strong></summary>
           <div className="menu-selection-content">
-            <p>Guarde as suas escolhas para pedir ao balcão.</p>
+            <p>Confira as quantidades antes de continuar no WhatsApp.</p>
             <ul className="menu-items">
               {selection.map(line => (
                 <li className="selection-line" key={line.id}>
@@ -81,22 +135,32 @@ export default function MenuSection({ onOpenImage }) {
                 </li>
               ))}
             </ul>
-            <button className="menu-clear" type="button" onClick={() => { setSelection([]); setAnnouncement('Seleção limpa.'); }}>Limpar seleção</button>
+            <button className="menu-clear" type="button" onClick={clearSelection}>Limpar seleção</button>
           </div>
         </details>
+        <div className="menu-whatsapp">
+          <a className="button button-dark" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            Continuar no WhatsApp
+          </a>
+          <p>{whatsapp.number ? 'O pedido abre no WhatsApp. Reveja a mensagem e toque em Enviar.' : 'Escolha a conversa da loja no WhatsApp, reveja a mensagem e toque em Enviar.'}</p>
+        </div>
+        </>
       )}
       <div className="menu-sheet" key={activeSection} role="region" aria-label={activeSection}>
-        {visibleGroups.map(group => (
+        {visibleGroups.map((group, index) => (
           <section className="menu-group" key={group.id} aria-label={group.name === 'Extras' ? `Extras ${group.category === 'Para comer' ? 'para comer' : 'de bebidas'}` : group.name}>
-            <header className="menu-group-heading">
+            <details className="menu-accordion" name="menu-sections" open={index === 0}>
+            <summary className="menu-group-heading">
               <h3>{group.name === 'Extras' ? `Extras ${group.category === 'Para comer' ? 'para comer' : 'de bebidas'}` : group.name}</h3>
+              <span className="menu-group-count">{group.items.length} opções</span>
               {group.note && <p>{group.note}</p>}
-            </header>
+            </summary>
             <ul className="menu-items">
               {group.items.map(item => (
                 <li className="menu-item" key={item.name}>
                   {item.image && (
                     <button className="menu-photo-button" type="button"
+                      style={item.image.thumbnailWidth ? { '--menu-photo-width': `${item.image.thumbnailWidth}px` } : undefined}
                       aria-label={`Ampliar foto de ${item.name}`} aria-haspopup="dialog"
                       onClick={() => onOpenImage({
                         ...item.image,
@@ -133,6 +197,7 @@ export default function MenuSection({ onOpenImage }) {
                 </li>
               ))}
             </ul>
+            </details>
           </section>
         ))}
       </div>

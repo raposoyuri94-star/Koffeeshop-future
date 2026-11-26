@@ -57,6 +57,7 @@ test('menu categories show readable items and prices with sandwich photos', asyn
     await expect(button).toHaveAttribute('aria-pressed', 'true');
     const region = page.getByRole('region', { name: category, exact: true });
     const group = region.getByRole('region', { name: section, exact: true });
+    if (!(await group.locator('details').evaluate(element => element.open))) await group.locator('summary').click();
     const row = group.getByRole('listitem').filter({ has: page.getByRole('heading', { name, exact: true }) });
     await expect(row).toContainText(price);
     await expect(region.locator('img')).toHaveCount(category === 'Para comer' ? 2 : 0);
@@ -64,6 +65,7 @@ test('menu categories show readable items and prices with sandwich photos', asyn
   await expect(page.getByText('07:30h – 11:00h', { exact: true })).toBeVisible();
   await expect(page.getByRole('group', { name: 'Categoria do menu', exact: true }).getByRole('button')).toHaveCount(6);
   await page.getByRole('button', { name: 'Café gelado', exact: true }).click();
+  await page.getByRole('region', { name: 'Iced cappuccino', exact: true }).locator('summary').click();
   const caramel = page.getByRole('region', { name: 'Iced cappuccino', exact: true }).getByRole('listitem').filter({ has: page.getByRole('heading', { name: 'Iced Caramel', exact: true }) });
   await expect(caramel.locator('.menu-price-option')).toHaveText(['M 330 MT', 'L 380 MT']);
   await expect(page.getByRole('dialog')).toHaveCount(0);
