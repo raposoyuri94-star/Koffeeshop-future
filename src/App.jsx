@@ -7,6 +7,7 @@ import CoffeeRain from './components/CoffeeRain';
 import HeroSection from './sections/HeroSection';
 import StorySection from './sections/StorySection';
 import MenuSection from './sections/MenuSection';
+import GallerySection from './sections/GallerySection';
 import SeasonalSection from './sections/SeasonalSection';
 import CateringSection from './sections/CateringSection';
 import LocationSection from './sections/LocationSection';
@@ -53,6 +54,7 @@ export default function App() {
             <HeroSection onMakeItRain={makeItRain} />
             <StorySection />
             <MenuSection onOpenImage={setPreviewImage} />
+            <GallerySection onOpenImage={setPreviewImage} />
             <CateringSection onOpenCatering={openCatering} />
             <LocationSection />
           </>
