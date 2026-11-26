@@ -2,8 +2,8 @@ const imagePath = name => `${import.meta.env.BASE_URL}images/${name.split('/').m
 
 export const images = {
   hero: {
-    src: imagePath('kofee 3.jpeg'),
-    alt: 'Amigos sentados num campo azul, a partilhar cafés gelados da Koffé',
+    src: imagePath('Koffee 2.jpeg'),
+    alt: 'Um café gelado da Koffé ao lado de um telemóvel e de um portátil',
   },
   story: {
     src: imagePath('Koffee 2.jpeg'),

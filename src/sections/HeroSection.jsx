@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CoffeeDoodle } from '../components/brand/Brand';
-import { images } from '../data/images';
 
 const stripMessages = [
   'Café com gelo',
@@ -11,6 +10,17 @@ const stripMessages = [
 
 export default function HeroSection({ onMakeItRain }) {
   const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!showVideo || !videoRef.current) return;
+    let cancelled = false;
+    // Mobile browsers may reject autoplay without emitting a media error.
+    videoRef.current.play().catch(() => {
+      if (!cancelled) setShowVideo(false);
+    });
+    return () => { cancelled = true; };
+  }, [showVideo]);
 
   useEffect(() => {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,17 +34,11 @@ export default function HeroSection({ onMakeItRain }) {
   return (
     <>
       <section className={`hero${showVideo ? ' hero-with-video' : ''}`} id="home" aria-labelledby="hero-heading">
-        <img
-          className="hero-image"
-          src={images.hero.src}
-          alt={images.hero.alt}
-          fetchPriority="high"
-        />
         {showVideo && (
           <video
+            ref={videoRef}
             className="hero-video"
             src={`${import.meta.env.BASE_URL}videos/koffee-hero.mp4`}
-            poster={images.hero.src}
             autoPlay
             muted
             loop
