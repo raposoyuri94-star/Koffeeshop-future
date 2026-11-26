@@ -60,7 +60,7 @@ test('menu categories show readable items and prices with sandwich photos', asyn
     if (!(await group.locator('details').evaluate(element => element.open))) await group.locator('summary').click();
     const row = group.getByRole('listitem').filter({ has: page.getByRole('heading', { name, exact: true }) });
     await expect(row).toContainText(price);
-    await expect(region.locator('img')).toHaveCount(category === 'Para comer' ? 2 : 0);
+    await expect(region.locator('img')).toHaveCount(category === 'Para comer' ? 2 : category === 'Matcha e chá' ? 1 : 0);
   }
   await expect(page.getByText('07:30h – 11:00h', { exact: true })).toBeVisible();
   await expect(page.getByRole('group', { name: 'Categoria do menu', exact: true }).getByRole('button')).toHaveCount(6);

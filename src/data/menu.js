@@ -43,7 +43,7 @@ export const menu = {
       item('Iced Hazelnut', [300, 350], 'Cappuccino powder + leite + hazelnut syrup + gelo'),
     ]),
     group('Iced coffee', [
-      item('Iced coffee plain', [200, 250], 'Café + sugar syrup + leite + gelo'),
+      item('Iced coffee plain', [200, 250], 'Café + sugar syrup + leite + gelo', { src: 'iced-coffee.png', width: 1122, height: 1402 }),
       item('Nutella', [350, 400], 'Café + sugar syrup + Nutella + leite + gelo'),
       item('Biscoff lotus', [350, 400], 'Café + sugar syrup + lotus + leite + gelo'),
       item('Oreo Cookie', [250, 300], 'Café + sugar syrup + Oreo cookie crumbs + leite + gelo'),
@@ -63,7 +63,7 @@ export const menu = {
   ],
   'Matcha e bebidas': [
     group('Iced matcha', [
-      item('Iced Matcha latte', 300, 'Matcha powder + leite + gelo'),
+      item('Iced Matcha latte', 300, 'Matcha powder + leite + gelo', { src: 'iced-matcha-latte.png', width: 1122, height: 1402 }),
       item('Creamy Vanilla Matcha', 400, 'Matcha powder + vanilla syrup + leite + vanilla sweet cream + gelo'),
       item('Strawberry Matcha', 350, 'Matcha powder + strawberry purée + leite + gelo'),
       item('Peach Matcha', 350, 'Matcha powder + peach purée + leite + gelo'),

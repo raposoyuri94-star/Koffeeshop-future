@@ -164,12 +164,12 @@ export default function MenuSection({ onOpenImage }) {
                       onClick={() => onOpenImage({
                         ...item.image,
                         src: `${import.meta.env.BASE_URL}images/${item.image.src}`,
-                        alt: `Sandes ${item.name}`,
+                        alt: item.name,
                         title: item.name,
                       })}>
                       <img className="menu-item-photo"
                         src={`${import.meta.env.BASE_URL}images/${item.image.src}`}
-                        alt={`Sandes ${item.name}`}
+                        alt={item.name}
                         width={item.image.width} height={item.image.height} loading="lazy" />
                     </button>
                   )}
